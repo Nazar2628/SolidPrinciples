@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SolidPrinciples.Models.Book>
+
+@{
+    ViewBag.Title = "Library";
+}
+
+<h2>Library</h2>
+
+<table class="table">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Is Checked Out</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Author</td>
+            <td>@book.IsCheckedOut</td>
+            <td>
+                @if (!book.IsCheckedOut)
+                {
+                    @Html.ActionLink("Check Out", "CheckOut", new { id = book.Id })
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Add New Book", "AddBook")
